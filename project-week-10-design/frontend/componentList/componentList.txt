@@ -1,0 +1,112 @@
+
+App
+
+    state:
+        user - contains user details e.g. id, username
+        activeTodos - all user active todos 
+        doneTodos - all user done todos
+        message - last user action e.g. "Michael added an active todo" 
+
+    Header
+
+    LogOrSignContainer
+
+        state/setters from App:
+            user
+            setUser
+            setActiveTodos
+            setDoneTodos
+            message
+            setMessage
+
+        Register
+
+            state/setters from LogOrSignContainer:
+                user
+                setUser
+                message
+                setMessage
+                
+
+        Login
+
+            state/setters from LogOrSignContainer:
+                user    
+                setUser 
+                setActiveTodos 
+                setDoneTodos
+                message
+                setMessage
+
+        Logout
+
+            state/setters from LogOrSignContainer:
+                user    
+                setUser 
+                setActiveTodos 
+                setDoneTodos
+        
+        Message
+
+            state/setters from LogOrSignContainer:
+                message
+
+    TodoListsContainer
+
+        state/setters from App:
+            activeTodos,
+            setActiveTodos
+            doneTodos
+            setDoneTodos
+            user
+            setMessage
+
+        ActiveTodos
+
+            state/setters from TodoListsContainer:
+                activeTodos
+                setActiveTodos
+                doneTodos
+                setDoneTodos
+                user
+                setMessage
+
+            Todo 
+
+                state/setters from TodoListsContainer:
+                    todo (from .map() ActiveTodos)
+                    activeTodos
+                    setDoneTodos
+                    setActiveTodos
+                    doneTodos
+                    user
+                    setMessage
+                
+
+        DoneTodos
+
+            state/setters from TodoListsContainer:
+                doneTodos 
+                setDoneTodos 
+                user 
+                setMessage
+            
+            Todo
+
+                state/setters from DoneTodos:
+                    doneTodos 
+                    setDoneTodos 
+                    user 
+                    setMessage
+
+    AddTodo
+
+        state/setters from App:
+            activeTodos 
+            setActiveTodos 
+            user 
+            setMessage
+
+
+
+    Footer

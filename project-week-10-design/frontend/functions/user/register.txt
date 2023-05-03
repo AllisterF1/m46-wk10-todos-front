@@ -1,0 +1,47 @@
+
+register 
+
+type: fetch request
+
+Purpose: add user to db and create token/cookie
+
+parameters:
+    event
+    username
+    password
+
+return: data 
+
+URL: /users/register
+
+Request:
+    method: "POST",
+    mode: "cors"
+    body: 
+        username: string
+        password: string
+
+ExpectedResponse:
+    status: 201
+    ok: true
+
+ExpectedResponseData:
+    message:
+        type: string
+        text: "success"
+    user:
+        type: object
+        properties:
+            username: string
+            token: string
+
+ErrorResponse:
+    status: 501
+    ok: false
+
+ErrorResponseData:
+    type: object
+    properties:
+        message: "error"
+        error: the error
+

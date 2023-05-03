@@ -1,0 +1,6 @@
+
+Done Todos
+
+POST - /donetodos/adddonetodo - deletes todo from activeTodos and adds todo to doneTodos todo through user association
+POST - /donetodos/deletedonetodo - deletes todo from doneTodos through user association
+

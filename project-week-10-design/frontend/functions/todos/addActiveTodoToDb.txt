@@ -1,0 +1,54 @@
+
+addActiveTodoToDb
+
+type: fetch request
+
+purpose: add a todo to the active table on db whilst checking for user credentials i.e. token
+
+parameters: todo (text of todo e.g. "mow lawn")
+
+return: data
+
+URL: /activetodos/addtodo
+
+Request:
+    method: "POST"
+    mode: "cors"
+    headers:
+        Content-Type: application/json
+        Authorization: string (token)
+    body: 
+        todo: string
+
+ExpectedResponse:
+    status: 201
+    ok: true
+
+ExpectedResponseData:
+    type: object
+    properties:
+        message:
+            type: string
+            text: "success"
+        todo:
+            type: object
+            properties:
+                id: number
+                todo: string (todo text, example: "mow lawn")
+
+NotAuthorizedResponse:
+    type: object
+    properties:
+        message:
+            type: string
+            text: "user not authorized"
+
+ErrorResponse:
+    status: 501
+    ok: false
+
+ErrorResponseData:
+    type: object
+    properties:
+        message: "error"
+        error: the error

@@ -1,0 +1,56 @@
+authCheck
+
+type: fetch request
+
+Purpose: verify user token from cookie and return active and done todos
+
+parameters: token
+
+return: data
+
+URL: /users/authcheck
+
+Request:
+    method: "GET"
+    mode: "cors"
+    headers:
+        Content-Type: application/json
+        Authorization: string (token)
+
+ExpectedResponse:
+    status: 200
+    ok: true
+
+ExpectedResponseData:
+    message:
+        type: string
+        text: "success"
+    user:
+        type: object
+        properties:
+            username: string
+            token: string
+    activeTodos:
+        type: array
+        elements:
+            type: object
+            properties:
+                id: number
+                todo: string (todo text, example: "buy milk")
+    doneTodos:
+        type: array
+        elements:
+            type: object
+            properties:
+                id: number
+                todo: string (todo text, example: "walk dog")
+
+ErrorResponse:
+    status: 501
+    ok: false
+
+ErrorResponseData:
+    type: object
+    properties:
+        message: "error"
+        error: the error

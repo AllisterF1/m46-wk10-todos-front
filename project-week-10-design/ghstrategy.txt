@@ -1,0 +1,54 @@
+
+GH strategy
+
+branches:
+
+main:
+    dev:
+        feature branches (e.g. feature/login):
+            personal branches (e.g. enhancement/login_addfetch_mz)
+
+Organise the naming of the feature banches arung the user stories; the names
+do not have to exactly match but should reflect the tasks that will be performed. 
+
+The project will follow a rebasing strategy to ensure that each developer
+is working from the most recent production code. 
+
+Strategy is as follows:
+
+    1. Switch to dev locally and; 
+        git pull
+    
+    2. Swtich to relevant feature branch and; 
+    
+        git rebase dev
+
+    3. Make a new branch from which to work;
+
+        git switch -c <actionDescription>/<featurename>_<activity>_<initials>
+
+        example branch name; enhancement/login_addfetch_mz
+
+        bugfix/message_typofix_mz
+
+    4. Push to GH
+
+    5. Merge with relevant feature branch;
+
+        e.g. merge enhancement/login_addfetch_mz with feature/login
+
+        delete enhancement/login_addfetch_mz
+
+    6. Merge feature branch with dev;
+
+        e.g. merge feature/login with dev
+
+        DO NOT DELETE feature/login
+
+    7. When ready, merge dev with main 
+
+        DO NOT DELETE dev
+
+    8. Switch to dev locally, git pull and repeat process
+
+  

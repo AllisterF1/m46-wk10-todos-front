@@ -1,0 +1,18 @@
+logout
+
+type: function
+
+purpose: 
+    sets user to null,
+    sets activeTodos to []
+    sets doneTodos to []
+    back-dates cookie to remove
+
+parameters:
+    event,
+    setUser,
+    setActiveTodos,
+    setDoneTodos,
+
+return:
+    N/A

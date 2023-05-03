@@ -1,0 +1,70 @@
+deleteActiveOrDoneTodoToDb
+
+!!!! STRETCH GOAL WARNING - it is possible to complete the app using two seperate delete functions !!!
+
+
+type: fetch request
+
+purpose: delete either an active todo OR a done todo whilst checking for user validation i.e. token
+
+parameters: todo (text of todo e.g. "mow lawn")
+            url (the specific endpoints for either the active or done todo)
+
+return: data
+
+URL: /activetodos/deleteactivetodo
+     /donetodos/deletedonetodo
+
+Request:
+    method: "DELETE"
+    mode: "cors"
+    headers:
+        Content-Type: application/json
+        Authorization: string (token)
+    body: 
+        todo: string
+
+ExpectedResponse:
+    status: 201
+    ok: true
+
+ExpectedResponseData:
+    type: object
+    properties:
+        message:
+            type: string
+            text: "success"
+        
+NotAuthorizedResponse:
+    status: 401
+    ok: false
+
+NotAuthorizedData
+    type: object
+    properties:
+        message:
+            type: string
+            text: "user not authorized"
+
+NotFoundResponse:
+    status: 404
+    status: ok
+
+NotFoundData:
+    type: object
+    properties:
+        message:
+            type: string
+            text: "todo not found"
+
+ErrorResponse:
+    status: 501
+    ok: false
+
+ErrorResponseData:
+    type: object
+    properties:
+        message: "error"
+        error: the error
+
+       

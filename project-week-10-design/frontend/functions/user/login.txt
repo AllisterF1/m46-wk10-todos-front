@@ -1,0 +1,59 @@
+login
+
+type: fetch request
+
+Purpose: verify user password and return token for cookie and active and done todos
+
+parameters:
+    event
+    username
+    password
+
+return: data
+
+URL: /users/login
+
+Request:
+    method: "POST",
+    mode: "cors"
+    body: 
+        username: string
+        password: string
+
+ExpectedResponse:
+    status: 201
+    ok: true
+
+ExpectedResponseData:
+    message:
+        type: string
+        text: "success"
+    user:
+        type: object
+        properties:
+            username: string
+            token: string
+    activeTodos:
+        type: array
+        elements:
+            type: object
+            properties:
+                id: number
+                todo: string (todo text, example: "buy milk")
+    doneTodos:
+        type: array
+        elements:
+            type: object
+            properties:
+                id: number
+                todo: string (todo text, example: "walk dog")
+
+ErrorResponse:
+    status: 501
+    ok: false
+
+ErrorResponseData:
+    type: object
+    properties:
+        message: "error"
+        error: the error

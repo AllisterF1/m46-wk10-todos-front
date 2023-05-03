@@ -1,0 +1,51 @@
+addDoneTodo
+
+Recieves from:
+    tokenCheck
+
+Purpose: add todo to done table through User relationship
+
+
+Data: 
+    type: object 
+    name: req
+    properties:
+        authCheck:
+            type: object
+            properties
+                id: number
+                username: string
+                password: string (hashed)
+        body:
+            type: object
+            properties:
+                todo: todo: string (todo text, example "cook dinner")
+
+Responses:
+    status: 201
+        type: object
+        name: successResponse
+        properties:
+            message:
+                type: string
+                text: "success"
+            todo:
+                type: object
+                properties:
+                    id: number
+                    todo: string (todo text, example: "walk dog")
+
+    status: 401 
+        type: object
+        name: not authorized
+        properties:
+            message:
+                type: string
+                text: "user not authorized"
+
+    status: 501
+        type: object
+        name: errorResponse
+        properties:
+            message: "error"
+            error: the error

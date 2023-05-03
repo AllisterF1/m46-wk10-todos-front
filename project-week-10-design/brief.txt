@@ -1,0 +1,58 @@
+
+Brief: Awesome Todo App
+
+A client has asked you to build a todo app. 
+
+The client needs an app that will allow a user to register
+and have their data secured, on registering and on logging in. 
+
+They wants the user to be able to manage their todo list, i.e. 
+add thier todos to an active list and then add these to a done list
+upon completion. 
+
+Managing a todo list will require the user to be able to delete todos
+from both the active and done todo lists. 
+
+In addition, the client requires the user data to persist i.e. store 
+both the user data and todos on a database.
+
+The following designs have been given;
+
+    basic FE wireframes,
+    components with global state,
+    FE fetch requests with data,
+    BE endpoints,
+    BE middleware functions with return data,
+    BE functions with responses/data,
+    Required user stories
+
+These designs are not exhaustive, meaning that more functions/state will have
+to be created, particulary on the FE.
+
+Please manage the orderand detail of your work. The app doesn't have to be completed
+in one go. For example, with multiple BE responses, it is perfectly the begin with two 
+(success, general error), and then other responses mentioned on the design add later, 
+time permitting.
+
+Remember, getting an app to work is more important than getting lots of detail in 
+an app that doesn't work.
+
+A Git/GitHub strategy must be followed; please see GH strategy guide. 
+
+The client has not specified any particular styling requirements, so feel
+free to get creative!
+
+Goals;
+
+Create a functioning app that performs all of the above client requirements
+
+Stretch Goals;
+
+Use a single Todo component to serve both Active and Done todos
+
+Use a single function to delete both active and done todos
+
+N.B. the design given assumes the completion of the stretch goals. If you don't wish to complete them 
+you'll have to work out how using the design as a guide. 
+
+

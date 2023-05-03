@@ -1,0 +1,107 @@
+Todo App stories
+
+General
+
+    I want a user to be able to; 
+
+        1. add todos to a list, 
+        2. delete todos from this list,
+        3. mark a todo done to move to a done list
+        4. delete a todo from this done list
+        5. Sign up
+        6. Login in
+        7. Have persistant login
+        8. Have active/done todos of the user display on login, 
+           on both manual and persistant login
+        9. Log out manually and remove and stored tokens/cookies removed
+
+
+User Register    
+
+    Register user
+    I want a user to be able to:
+
+        1. Register an account with a username and password
+        2. Have the user logged in on Register
+
+
+    See Text area
+    I want the user to be able to:
+
+        1. See the AddTodo text area once logged in, which is not visible
+           before login
+
+User Login
+
+    Manual Login
+    I want a user to be able to:
+
+        1. Manually log in with username and password
+        2. Have all user active/done todos displayed
+        3. See the AddTodo text area once logged in, which is not visible
+           before login
+
+    Persistant Login:
+    I want a user to be able to:
+
+        1. Navigate to app and be logged in if previously logged in without
+           logging out
+        2. Have all user active/done todos displayed
+        3. See the AddTodo text area once logged in, which is not visible
+           before login
+
+User logout
+
+    Manual logout
+    I want a user to be able to:
+
+        1. Manually logout, clearing cookies 
+        2. Persist active/done todos via db
+        3. Have the user not see the AddTodo text area onc logged out
+
+Active Todos
+
+    Add Active Todo
+    I want a user to be able to;
+
+        1. Type a todo message into a text area
+        2. Add a message to a todo
+        3. See a clear text area once todo added
+
+
+    Mark Active Todo As Complete
+    I want a user to be able to;
+
+        1. Mark an active todo as done and move to the done list
+        2. Have the activ todo removed from the active list
+
+    Delete Active Todo From Active list
+    I want a user to be able to:
+
+        1. Delete an active todo from the active list 
+
+
+Done todos
+
+    Delete Done Todo
+
+    The user will be able to;
+
+        1. Delete a todo from the done list
+
+Message
+
+    AutoMessage
+    I want a user to be able to see:
+
+        1. A message rendered in the browser displaying the last user application
+           e.g. "Added a new active todo", "Deleted done todo"
+
+
+
+git switch dev
+
+git switch -c feature/done_todos
+
+git push origin -u feature/done_todos
+
