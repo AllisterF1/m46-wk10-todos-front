@@ -1,21 +1,11 @@
-import { useState } from "react";
-import Header from "./components/header/Header.js";
-import "./App.css";
+
+import './App.css';
 
 function App() {
-	const [user, setUser] = useState({});
-
-	return (
-		<div className="app-container">
-			<Header username={user?.username} />
-
-			{/* Component: LogOrSignContainer (Unauthorised) */}
-
-			{/* Component: AddToDo (Authorised) */}
-			{/* Component: ToDoListsContainer (Authorised) */}
-			{/* Component: Footer (Authorised) */}
-		</div>
-	);
+  return (
+    <div className="App">
+    </div>
+  );
 }
 
 export default App;
