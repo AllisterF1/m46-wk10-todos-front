@@ -1,5 +1,0 @@
-
-Active Todos
-
-POST - /activetodos/addtodo - adds active todo to db through user association
-POST - /activetodos/deleteactivetodo - deletes active todo from db through user association
