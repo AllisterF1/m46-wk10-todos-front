@@ -1,5 +1,25 @@
 import { writeCookie } from "../common";
 
+export const authCheck = async (jwtToken) => {
+  try {
+     const response = await fetch("http://localhost:5002/users/authCheck", {
+      method: "GET",
+      headers: {
+          "Content-Type" : "application/json",
+          "Authorization": `Bearer $(jwtToken)`
+      }
+     }) 
+     const data = await response.json()
+     console.log(data)
+     return data.user.username
+
+  } catch (error) {
+      console.log(error)
+      
+  }
+}
+
+
 export const registerUser = async (username, email, password) => {
   try {
     const response = await fetch("http://localhost:5002/users/register", {
