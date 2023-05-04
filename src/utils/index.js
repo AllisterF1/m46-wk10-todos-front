@@ -63,6 +63,30 @@ export const addTodo = async jwtToken => {
 	}
 };
 
+// add a done todo to db - needs token auth adding later - placeholder of jwtToken
+export const addDoneTodo = async (jwtToken, todo) => {
+	try {
+		const response = await fetch(
+			"http://localhost:5001/activetodos/adddonetodo",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${jwtToken}`,
+				},
+				body: JSON.stringify({
+					todo: todo,
+				}),
+			},
+		);
+		const data = await response.json();
+
+		return data;
+	} catch (error) {
+		return { errorMessage: error.message, error: error };
+	}
+};
+
 export function logout(event, setUser, setActiveTodos, setDoneTodos) {
 	setUser(null);
 	setActiveTodos([]);
