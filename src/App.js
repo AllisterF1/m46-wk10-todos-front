@@ -1,4 +1,13 @@
-import { useState } from "react";
+import React from "react";
+import Login from './components/Login'
+import Register from './components/Register'
+
+import { useState, useEffect } from "react";
+
+import { getCookie } from "./common"
+
+import { authCheck } from "./utils"
+
 import Header from "./components/header/Header.js";
 import "./App.css";
 
