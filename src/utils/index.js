@@ -1,3 +1,5 @@
+import { writeCookie } from "../common";
+
 export const registerUser = async (username, email, password) => {
 	try {
 		const response = await fetch("http://localhost:5002/users/register", {
