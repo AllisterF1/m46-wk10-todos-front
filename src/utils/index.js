@@ -53,6 +53,7 @@ export const loginUser = async (username, password, setUser) => {
 		const data = await response.json();
 		console.log(data);
 		setUser(data.user);
+		writeCookie("jwt_token", data.token, 7);
 	} catch (error) {
 		console.log(error);
 	}
@@ -106,11 +107,11 @@ export const addDoneTodo = async (jwtToken, todo) => {
 	}
 };
 
-export function logout(event, setUser, setActiveTodos, setDoneTodos) {
+export function logout(_, setUser, setActiveTodos, setDoneTodos) {
 	setUser(null);
 	setActiveTodos([]);
 	setDoneTodos([]);
-	// TODO: back-dates cookie to remove
+	writeCookie("jwt_token", "", -1);
 }
 
 //checks if the todo is active or done and then deletes it via the correct URL
