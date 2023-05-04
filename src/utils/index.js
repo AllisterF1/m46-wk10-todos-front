@@ -11,7 +11,7 @@ export const authCheck = async jwtToken => {
 		});
 		const data = await response.json();
 		console.log(data);
-		return data.user.username;
+		return data.user;
 	} catch (error) {
 		console.log(error);
 	}
@@ -38,7 +38,7 @@ export const registerUser = async (username, email, password) => {
 };
 
 // login the user to the app
-export const loginUser = async (username, password, newUser) => {
+export const loginUser = async (username, password, setUser) => {
 	try {
 		const response = await fetch("http://localhost:5001/users/login", {
 			method: "POST",
@@ -52,7 +52,7 @@ export const loginUser = async (username, password, newUser) => {
 		});
 		const data = await response.json();
 		console.log(data);
-		newUser(data.user.username);
+		setUser(data.user);
 	} catch (error) {
 		console.log(error);
 	}
