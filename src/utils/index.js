@@ -20,7 +20,7 @@ export const loginUser = async (username, password, newUser) => {
 };
 
 // add an active todo to db - needs token auth adding later - placeholder of jwtToken
-export const addtodo = async (jwtToken) => {
+export const addTodo = async (jwtToken) => {
   try {
     const response = await fetch("http://localhost:5001/activetodos/addtodo", {
       method: "POST",
