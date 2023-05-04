@@ -10,9 +10,7 @@ function App() {
 			<Header username={user?.username} />
 
 			{/* Component: LogOrSignContainer (Unauthorised) */}
-
-			{/* Component: AddToDo (Authorised) */}
-			{/* Component: ToDoListsContainer (Authorised) */}
+			<TodoList />
 			{/* Component: Footer (Authorised) */}
 		</div>
 	);
