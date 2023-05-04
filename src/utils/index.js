@@ -86,3 +86,10 @@ export const addDoneTodo = async (jwtToken, todo) => {
 		return { errorMessage: error.message, error: error };
 	}
 };
+
+export function logout(event, setUser, setActiveTodos, setDoneTodos) {
+	setUser(null);
+	setActiveTodos([]);
+	setDoneTodos([]);
+	// TODO: back-dates cookie to remove
+}
