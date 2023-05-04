@@ -1,38 +1,79 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Kavoon&family=Poppins:wght@100;400;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/***
+ * App Component (Global Parent)
+ **/
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2ch;
+    min-height: 100svh;
+    background: rgb(66, 209, 221);
+    background: linear-gradient(225deg, rgba(66, 209, 221, 1) 0%, rgba(5, 109, 232, 1) 100%);
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/***
+ * Header Text Style
+ **/
+h1 {
+    margin: 1ch;
+    color: #ffffff;
+    text-shadow: 1px 1px 5px black, 0px 0px 0px white;
+    font-family: 'Kavoon', cursive;
+    font-size: 3rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/***
+ * Basic Button Style: Font size may need adjusting for specific buttons. 
+ **/
+button {
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 1px #000;
+    border: 2px solid #ffffff;
+    padding: 0.5ch 1ch;
+    color: #ffffff;
+    background-color: transparent;
+    font-family: 'Kavoon', cursive;
+    font-size: 1.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+    box-shadow: inset 1px 1px 5px 1px rgba(5, 109, 232, 1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/***
+ * Basic Input Box Style
+ **/
+input {
+    border-radius: 10px;
+    padding-block: 0.5ch;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/***
+ * Section Container Style
+ **/
+.sunken {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2ch;
+    align-items: center;
+    background-color: #ffffff88;
+    box-shadow: inset 1px 1px 5px 1px #000000;
+    border-radius: 10px;
+    padding: 3ch;
+    max-width: 75vw;
 }
