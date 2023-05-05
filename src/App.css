@@ -34,6 +34,21 @@ h1 {
     font-size: 3rem;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    gap: 2ch;
+    width: 20vw;
+    color: #ffffff;
+}
+
+.changeMode {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 /***
  * Basic Button Style: Font size may need adjusting for specific buttons. 
  **/
