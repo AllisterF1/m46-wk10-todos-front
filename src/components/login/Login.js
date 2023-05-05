@@ -1,46 +1,60 @@
 import React from "react";
 import { useState } from "react";
-import {loginUser} from"../utils";
+import { loginUser } from "../../utils";
 
-const Login = ({ newUser }) => {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+const Login = ({
+	setUserMode,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+}) => {
+	const [username, setUsername] = useState();
+	const [password, setPassword] = useState();
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    await loginUser(username, password, newUser)
-  };
+	const submitHandler = async e => {
+		e.preventDefault();
+		await loginUser(
+			username,
+			password,
+			setUser,
+			setMessage,
+			setActiveTodos,
+			setDoneTodos,
+		);
+	};
 
-  return (
-    <div className="login-container">
-      <h1>Login Below</h1>
+	function changeMode() {
+		setUserMode(p => !p);
+	}
 
-      <form onSubmit={submitHandler}>
-        <label htmlFor="username">Username:</label>
-
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          id="username"
-          name="username"
-          required
-        />
-
-       
-        <label htmlFor="password">Password:</label>
-
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          id="password"
-          name="password"
-          required
-        />
-
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
+	return (
+		<form onSubmit={submitHandler} className="login-form">
+			<input
+				onChange={e => setUsername(e.target.value)}
+				type="text"
+				id="username"
+				name="username"
+				placeholder="Username"
+				required
+			/>
+			<input
+				onChange={e => setPassword(e.target.value)}
+				type="password"
+				id="password"
+				name="password"
+				placeholder="Password"
+				required
+			/>
+			<button type="submit">Login</button>
+			<p>
+				Don't have an account?&nbsp;
+				<span onClick={changeMode} className="changeMode">
+					Register here.
+				</span>
+			</p>
+		</form>
+	);
 };
 
 export default Login;
