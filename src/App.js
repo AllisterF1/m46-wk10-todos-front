@@ -26,8 +26,7 @@ function App() {
 	}, []);
 
 	const loginWithToken = async jwt => {
-		const user = await authCheck(jwt);
-		setUser(user);
+		await authCheck(jwt, setUser, setMessage, setActiveTodos, setDoneTodos);
 	};
 
 	return (
@@ -38,6 +37,7 @@ function App() {
 					isLogin={isLogin}
 					setUserMode={setUserMode}
 					setUser={setUser}
+					setMessage={setMessage}
 					setActiveTodos={setActiveTodos}
 					setDoneTodos={setDoneTodos}
 				/>
