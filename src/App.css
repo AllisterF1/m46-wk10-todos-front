@@ -34,7 +34,8 @@ h1 {
     font-size: 3rem;
 }
 
-form {
+.login-form,
+.register-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,6 +43,15 @@ form {
     gap: 2ch;
     width: 20vw;
     color: #ffffff;
+}
+
+.todo-form {
+    display: flex;
+    gap: 2ch;
+}
+
+.todo-form input {
+    width: 25vw;
 }
 
 .changeMode {

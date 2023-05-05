@@ -10,6 +10,7 @@ import Footer from "./components/footer/Footer.js";
 import LogOrSignContainer from "./components/containers/LogOrSignContainer.js";
 
 import "./App.css";
+import TodoList from "./components/todo/TodoList";
 
 function App() {
 	const [user, setUser] = useState({ username: "Apache" });
@@ -45,7 +46,14 @@ function App() {
 				/>
 			) : (
 				<>
-					{/* Component: TodoListContainer (Authorised) */}
+					{isActive ? (
+						<TodoList
+							todos={activeTodos}
+							setTodos={setActiveTodos}
+						/>
+					) : (
+						<TodoList todos={doneTodos} setTodos={setDoneTodos} />
+					)}
 					<Footer
 						isActive={isActive}
 						setTodoMode={setTodoMode}
