@@ -1,4 +1,39 @@
-export const registerUser = async (username, email, password) => {
+import { writeCookie } from "../common";
+
+export const authCheck = async (
+	jwtToken,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+) => {
+	try {
+		const response = await fetch("http://localhost:5002/users/authCheck", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+		});
+		const data = await response.json();
+		console.log(data);
+		setUser(data.user);
+		setMessage(`${data.user.username} has logged in.`);
+		setActiveTodos(data.activeTodos);
+		setDoneTodos(data.doneTodos);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const registerUser = async (
+	username,
+	password,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+) => {
 	try {
 		const response = await fetch("http://localhost:5002/users/register", {
 			method: "POST",
@@ -7,19 +42,28 @@ export const registerUser = async (username, email, password) => {
 			},
 			body: JSON.stringify({
 				username: username,
-				email: email,
 				password: password,
 			}),
 		});
 		const data = await response.json();
-		console.log(data);
+		setUser(data.user);
+		setMessage(`${data.user.username} has registered an account.`);
+		setActiveTodos(data.activeTodos);
+		setDoneTodos(data.doneTodos);
 	} catch (error) {
 		console.log(error);
 	}
 };
 
 // login the user to the app
-export const loginUser = async (username, password, newUser) => {
+export const loginUser = async (
+	username,
+	password,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+) => {
 	try {
 		const response = await fetch("http://localhost:5001/users/login", {
 			method: "POST",
@@ -33,7 +77,11 @@ export const loginUser = async (username, password, newUser) => {
 		});
 		const data = await response.json();
 		console.log(data);
-		newUser(data.user.username);
+		setUser(data.user);
+		setMessage(`${data.user.username} has logged in.`);
+		setActiveTodos(data.activeTodos);
+		setDoneTodos(data.doneTodos);
+		writeCookie("jwt_token", data.token, 7);
 	} catch (error) {
 		console.log(error);
 	}
@@ -87,9 +135,34 @@ export const addDoneTodo = async (jwtToken, todo) => {
 	}
 };
 
-export function logout(event, setUser, setActiveTodos, setDoneTodos) {
+export function logout(_, setUser, setActiveTodos, setDoneTodos) {
 	setUser(null);
 	setActiveTodos([]);
 	setDoneTodos([]);
-	// TODO: back-dates cookie to remove
+	writeCookie("jwt_token", "", -1);
 }
+
+//checks if the todo is active or done and then deletes it via the correct URL
+export const deleteActiveOrDoneTodoToDb = async (jwtToken, todo, isActive) => {
+	try {
+		const url = isActive
+			? "activetodos/deleteactivetodo"
+			: "donetodos/deletedonetodo";
+
+		const response = await fetch(`http://localhost:5001/${url}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${jwtToken}`,
+			},
+			body: JSON.stringify({
+				todo: todo,
+			}),
+		});
+		const data = await response.json();
+
+		return data;
+	} catch (error) {
+		return { errorMessage: error.message, error: error };
+	}
+};

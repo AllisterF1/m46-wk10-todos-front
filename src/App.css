@@ -17,6 +17,7 @@
     align-items: center;
     row-gap: 2ch;
     min-height: 100svh;
+    padding: 5ch;
     background: rgb(66, 209, 221);
     background: linear-gradient(225deg, rgba(66, 209, 221, 1) 0%, rgba(5, 109, 232, 1) 100%);
     font-family: 'Poppins', sans-serif;
@@ -27,11 +28,35 @@
  * Header Text Style
  **/
 h1 {
-    margin: 1ch;
     color: #ffffff;
     text-shadow: 1px 1px 5px black, 0px 0px 0px white;
     font-family: 'Kavoon', cursive;
     font-size: 3rem;
+}
+
+.login-form,
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    gap: 2ch;
+    width: 20vw;
+    color: #ffffff;
+}
+
+.todo-form {
+    display: flex;
+    gap: 2ch;
+}
+
+.todo-form input {
+    width: 25vw;
+}
+
+.changeMode {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /***
