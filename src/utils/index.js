@@ -1,6 +1,12 @@
 import { writeCookie } from "../common";
 
-export const authCheck = async jwtToken => {
+export const authCheck = async (
+	jwtToken,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+) => {
 	try {
 		const response = await fetch("http://localhost:5002/users/authCheck", {
 			method: "GET",
@@ -11,13 +17,23 @@ export const authCheck = async jwtToken => {
 		});
 		const data = await response.json();
 		console.log(data);
-		return data.user;
+		setUser(data.user);
+		setMessage(`${data.user.username} has logged in.`);
+		setActiveTodos(data.activeTodos);
+		setDoneTodos(data.doneTodos);
 	} catch (error) {
 		console.log(error);
 	}
 };
 
-export const registerUser = async (username, email, password) => {
+export const registerUser = async (
+	username,
+	password,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+) => {
 	try {
 		const response = await fetch("http://localhost:5002/users/register", {
 			method: "POST",
@@ -26,19 +42,28 @@ export const registerUser = async (username, email, password) => {
 			},
 			body: JSON.stringify({
 				username: username,
-				email: email,
 				password: password,
 			}),
 		});
 		const data = await response.json();
-		console.log(data);
+		setUser(data.user);
+		setMessage(`${data.user.username} has registered an account.`);
+		setActiveTodos(data.activeTodos);
+		setDoneTodos(data.doneTodos);
 	} catch (error) {
 		console.log(error);
 	}
 };
 
 // login the user to the app
-export const loginUser = async (username, password, setUser) => {
+export const loginUser = async (
+	username,
+	password,
+	setUser,
+	setMessage,
+	setActiveTodos,
+	setDoneTodos,
+) => {
 	try {
 		const response = await fetch("http://localhost:5001/users/login", {
 			method: "POST",
@@ -53,6 +78,9 @@ export const loginUser = async (username, password, setUser) => {
 		const data = await response.json();
 		console.log(data);
 		setUser(data.user);
+		setMessage(`${data.user.username} has logged in.`);
+		setActiveTodos(data.activeTodos);
+		setDoneTodos(data.doneTodos);
 		writeCookie("jwt_token", data.token, 7);
 	} catch (error) {
 		console.log(error);
