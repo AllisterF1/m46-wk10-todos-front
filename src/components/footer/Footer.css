@@ -1,0 +1,10 @@
+.footer-container {
+    width: 75vw;
+    display: flex;
+    align-items: center;
+    gap: 2ch;
+}
+
+.pushRight {
+    margin-left: auto;
+}
