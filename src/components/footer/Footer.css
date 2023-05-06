@@ -1,7 +1,9 @@
 .footer-container {
+    margin-top: auto;
     width: 75vw;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 2ch;
 }
 
