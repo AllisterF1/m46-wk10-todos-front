@@ -1,57 +1,51 @@
-import React, { useState } from 'react';
-import TodoForm from './TodoForm';
-import Todo from './Todo';
+import TodoForm from "./TodoForm";
+import Todo from "./Todo";
 
-function TodoList() {
-  const [todos, setTodos] = useState([]);
+function TodoList({ todos, setTodos }) {
+	const addTodo = todo => {
+		if (!todo.text || /^\s*$/.test(todo.text)) {
+			return;
+		}
+		const newTodos = [todo, ...todos];
+		setTodos(newTodos);
+		console.log(...todos);
+	};
 
-  const addTodo = todo => {
-    if (!todo.text || /^\s*$/.test(todo.text)) {
-      return;
-    }
+	const updateTodo = (todoId, newValue) => {
+		if (!newValue.text || /^\s*$/.test(newValue.text)) {
+			return;
+		}
+		setTodos(prev =>
+			prev.map(item => (item.id === todoId ? newValue : item)),
+		);
+	};
 
-    const newTodos = [todo, ...todos];
+	const removeTodo = id => {
+		const removedArr = [...todos].filter(todo => todo.id !== id);
+		setTodos(removedArr);
+	};
 
-    setTodos(newTodos);
-    console.log(...todos);
-  };
+	const completeTodo = id => {
+		let updatedTodos = todos.map(todo => {
+			if (todo.id === id) {
+				todo.isComplete = !todo.isComplete;
+			}
+			return todo;
+		});
+		setTodos(updatedTodos);
+	};
 
-  const updateTodo = (todoId, newValue) => {
-    if (!newValue.text || /^\s*$/.test(newValue.text)) {
-      return;
-    }
-
-    setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
-  };
-
-  const removeTodo = id => {
-    const removedArr = [...todos].filter(todo => todo.id !== id);
-
-    setTodos(removedArr);
-  };
-
-  const completeTodo = id => {
-    let updatedTodos = todos.map(todo => {
-      if (todo.id === id) {
-        todo.isComplete = !todo.isComplete;
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-  };
-
-  return (
-    <>
-      <h1>To Do List</h1>
-      <TodoForm onSubmit={addTodo} />
-      <Todo
-        todos={todos}
-        completeTodo={completeTodo}
-        removeTodo={removeTodo}
-        updateTodo={updateTodo}
-      />
-    </>
-  );
+	return (
+		<>
+			<TodoForm onSubmit={addTodo} />
+			<Todo
+				todos={todos}
+				completeTodo={completeTodo}
+				removeTodo={removeTodo}
+				updateTodo={updateTodo}
+			/>
+		</>
+	);
 }
 
 export default TodoList;

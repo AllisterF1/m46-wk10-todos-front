@@ -1,23 +1,27 @@
 import React from "react";
-import Login from "./components/Login";
-import Register from "./components/Register";
 
 import { useState, useEffect } from "react";
 
 import { getCookie } from "./common";
-
 import { authCheck } from "./utils";
 
 import Header from "./components/header/Header.js";
+import Footer from "./components/footer/Footer.js";
+import LogOrSignContainer from "./components/containers/LogOrSignContainer.js";
 
 import "./App.css";
+import TodoList from "./components/todo/TodoList";
 
 function App() {
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState({ username: "Apache" });
+	const [isLogin, setUserMode] = useState(true);
+	const [isActive, setTodoMode] = useState(true);
+	const [message, setMessage] = useState("Apache has logged in.");
+	const [activeTodos, setActiveTodos] = useState([]);
+	const [doneTodos, setDoneTodos] = useState([]);
 
 	useEffect(() => {
 		let jwt = getCookie("jwt_token");
-		console.log("!!!!!");
 		console.log(jwt);
 		if (jwt !== false) {
 			loginWithToken(jwt);
@@ -25,27 +29,41 @@ function App() {
 	}, []);
 
 	const loginWithToken = async jwt => {
-		const user = await authCheck(jwt);
-		setUser(user);
+		await authCheck(jwt, setUser, setMessage, setActiveTodos, setDoneTodos);
 	};
 
 	return (
 		<div className="app-container">
 			<Header username={user?.username} />
-
-			<Register />
-			<br></br>
-			<br></br>
-			<Login newUser={setUser} />
-			{user != null ? (
-				<h2>Hello welcome {user.username} you have logged in</h2>
+			{user == null ? (
+				<LogOrSignContainer
+					isLogin={isLogin}
+					setUserMode={setUserMode}
+					setUser={setUser}
+					setMessage={setMessage}
+					setActiveTodos={setActiveTodos}
+					setDoneTodos={setDoneTodos}
+				/>
 			) : (
-				<h2>Welcome</h2>
+				<>
+					{isActive ? (
+						<TodoList
+							todos={activeTodos}
+							setTodos={setActiveTodos}
+						/>
+					) : (
+						<TodoList todos={doneTodos} setTodos={setDoneTodos} />
+					)}
+					<Footer
+						isActive={isActive}
+						setTodoMode={setTodoMode}
+						message={message}
+						setUser={setUser}
+						setActiveTodos={setActiveTodos}
+						setDoneTodos={setDoneTodos}
+					/>
+				</>
 			)}
-
-			{/* Component: LogOrSignContainer (Unauthorised) */}
-			<TodoList />
-			{/* Component: Footer (Authorised) */}
 		</div>
 	);
 }
